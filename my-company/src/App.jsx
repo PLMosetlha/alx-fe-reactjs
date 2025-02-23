@@ -5,7 +5,7 @@ import About from "./About.jsx";
 import Services from "./Services.jsx";
 import Contact from "./Contact.jsx";
 import "./styles.css";
-import Navbar from "./Navbar,jsx";
+import Navbar from "./Navbar.jsx";
 
 const Navbar = () => {
   return (
