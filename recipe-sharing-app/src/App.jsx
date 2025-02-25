@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Add necessary imports for routing
 import RecipeList from "./components/RecipeList";
 import AddRecipeForm from "./components/AddRecipeForm";
 import SearchBar from "./components/SearchBar";
+import RecipeDetails from "./components/RecipeDetails"; // Import RecipeDetails component
 import { useRecipeStore } from "./recipeStore";
 
 function App() {
@@ -30,12 +32,13 @@ function App() {
   }, [setRecipes]);
 
   return (
-    <div>
-      <h1>Recipe Sharing App</h1>
-      <SearchBar />
-      <AddRecipeForm />
-      <RecipeList />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<RecipeList />} /> {/* Recipe list page */}
+        <Route path="/recipe/:id" element={<RecipeDetails />} />{" "}
+        {/* Recipe detail page */}
+      </Routes>
+    </Router>
   );
 }
 
