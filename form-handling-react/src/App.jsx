@@ -1,5 +1,5 @@
-import FormikForm from "./formikForm.js";
-import RegistrationForm from "./RegistrationForm.js";
+import formikForm from "./formikForm.js";
+import RegistrationForm from "./RegistrationForm.jsx";
 function App() {
   return (
     <div>
@@ -11,7 +11,7 @@ function App() {
 
       {/* Formik Form */}
       <h2>Formik Form</h2>
-      <FormikForm />
+      <formikForm />
     </div>
   );
 }
