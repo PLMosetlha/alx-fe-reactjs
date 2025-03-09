@@ -1,17 +1,16 @@
-import formikForm from "./formikForm.js";
-import RegistrationForm from "./RegistrationForm.jsx";
+// src/App.js
+import React from "react";
+import RegistrationForm from "./RegistrationForm.js";
+import FormikForm from "./FormikForm.js";
+
 function App() {
   return (
     <div>
       <h1>User Registration</h1>
-
-      {/* Controlled Component Form */}
-      <h2>Controlled Form</h2>
+      <h2>Using Controlled Components</h2>
       <RegistrationForm />
-
-      {/* Formik Form */}
-      <h2>Formik Form</h2>
-      <formikForm />
+      <h2>Using Formik</h2>
+      <FormikForm />
     </div>
   );
 }
