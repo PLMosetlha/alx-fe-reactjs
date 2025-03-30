@@ -35,9 +35,8 @@ const Search = () => {
         />
         <button type="submit">Search</button>
       </form>
-
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {error && <p>{error}</p>} {/* Display error message here */}
       {userData && (
         <div>
           <img
