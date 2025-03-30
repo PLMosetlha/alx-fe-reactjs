@@ -1,27 +1,57 @@
 import React, { useState } from "react";
+import { fetchUserData } from "../services/githubService";
 
-const Search = ({ onSearch }) => {
+const Search = () => {
   const [username, setUsername] = useState("");
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
+  // Handle form submission and fetch user data
+  const handleSearch = async (e) => {
     e.preventDefault();
-    onSearch(username); // Pass username to the parent component (App)
+    setLoading(true);
+    setError("");
+    setUserData(null); // Reset previous user data before making a new request
+
+    try {
+      const data = await fetchUserData(username);
+      setUserData(data);
+    } catch (err) {
+      setError("Looks like we can't find the user");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={username}
-        onChange={handleChange}
-        placeholder="Enter GitHub username"
-      />
-      <button type="submit">Search</button>
-    </form>
+    <div>
+      <form onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Enter GitHub username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {userData && (
+        <div>
+          <img
+            src={userData.avatar_url}
+            alt={`${userData.login}'s avatar`}
+            width="100"
+          />
+          <h3>{userData.login}</h3>
+          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
+            View Profile
+          </a>
+        </div>
+      )}
+    </div>
   );
 };
 
